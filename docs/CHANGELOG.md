@@ -26,18 +26,24 @@ Added - Submarket buttons fill each row exactly
 - Version heading: the version alone on its line, optionally followed by ` - UNRELEASED`. No `v` prefix, no date, no Markdown. The release tooling reads these headings, so keep them in this form.
 - Entries: one change per line, starting `Added - `, `Adjusted - `, `Fixed - ` or `Removed - `.
 - A `Note - ` line directly below an entry explains a limit or something the player must do.
-- Optional short category lines (`Buttons`, `Settings`, `General`) when a version has many entries.
+- Never write or change a save compatibility line unasked.
+- Optional category lines when a version has many entries: in-game feature names, `General` first; a hotfix has none.
 - Use a `Development` category for useful changes to the build or authoring tools. Do not present a refactor or a documentation edit as a gameplay change.
 - If no unreleased section exists, add one above the newest version. Ask the user which version comes next if it has not been chosen; do not invent a new version per commit.
 
 ## Wording
 
-Entries are player-facing: plain sentences in sentence case, not programmer speak.
+Entries are player-facing and follow the house-style skill's "Changelog entries" section, which wins over this guide on wording. In short:
 
-- Say what changed and name the screen or button so a player can find it (`cargo screen`, `storage button`).
-- For a fix, describe the broken behavior that is now fixed, not the internal call chain: `Fixed - Crash when opening the fleet screen at a station without a market`.
-- Give old and new values for changed defaults or numbers.
-- No agent or model names, links, validation logs or commit hashes. No claims about how thoroughly anything was tested.
+- One change per line, `Added`, `Adjusted`, `Fixed`, `Removed` in that order inside a category. Stay under 80 characters; go past 100 only for a new feature that needs its numbers.
+- Capital letter after the dash, no full stop on a one-clause line, no semicolons, no hyphen as a dash inside the text. Screen, button and setting names keep their capitals (`Tiles`, `Five per row`, `Storage`).
+- What the player sees, never the call chain or class names.
+- Added: name, colon, what it does (`Added - Tile unfold setting: On hover, On click or Never`).
+- Adjusted: numbers as old `->` new with the unit (`Adjusted - Default unfold time 0.2 -> 0.1 seconds`), otherwise a direction word.
+- Fixed, in the user's forms: `Fixed - Storage button no longer overlaps the open market`, `Fixed - Crash when opening the fleet screen at a station without a market`, or a short noun phrase.
+- Removed: the thing, then the reason or replacement in parentheses.
+- Credits name real people only, never an agent. No agent or model names, links, validation logs or commit hashes, and no hedges about whether a fix works; untested status goes in the PR.
+- Keep the user's own lines verbatim. Never tidy, shorten or merge them, and never imitate their jokes or asides.
 
 ## Amending versus adding
 

@@ -82,6 +82,7 @@ Update documents automatically as part of each relevant change. Before committin
 | `docs/RELEASE.md` | Version numbers, release builder, package contents and publishing | Keep the workflow and builder aligned. |
 | `lib/` | Read-only compile jars (game API and its libraries, PatchLib API, LunaLib, LazyLib, Kotlin runtime) | Replace only for a game or library update, as described in `docs/RELEASE.md`. |
 | `Changelog` and `docs/CHANGELOG.md` | Shipped change notes and how agents write them | Add or amend unreleased entries with each implementation task; preserve published entries. |
+| `.claude/agents/researcher.md` | Read-only research subagent | Update when the research sources or the dispatch rules change. |
 
 Give each fact one home. Move useful detail to its proper owner and link to it. After moving a section, repair inbound links and check that no requirement or technical constraint was lost.
 
@@ -116,7 +117,7 @@ Write documentation in ordinary English. Use direct verbs and concrete nouns; re
 
 ## Agent behavior
 
-- Keep the user's selected model. The main agent owns planning, merging and shipped code. Delegate bounded research only when authorized.
+- Keep the user's selected model. The main agent owns planning, merging and shipped code. Delegate bounded research only when authorized, using the `researcher` agent in `.claude/agents/`.
 - Treat repository instructions as project requirements and skill guidance as scoped reference material. If a skill blocks work or changes its scope, identify the exact instruction and explain the effect.
 - Give brief progress updates and concise final results. Put detailed evidence in the pull request.
 

@@ -10,7 +10,7 @@ None
 
 1.1.a - UNRELEASED
 Added - Tile unfold setting for the Tiles layout: On hover (default), On click (only the clicked market's tile expands) or Never (icons only)
-Adjusted - The Unfold on hover layout is now called Tiles; a saved Unfold on hover becomes Tiles with On hover
+Adjusted - Unfold on hover layout renamed to Tiles, saved settings carry over
 
 1.0.a
 Added - Market buttons fill each row on the cargo and fleet screens, with Storage at the bottom right

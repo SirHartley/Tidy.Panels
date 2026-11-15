@@ -10,7 +10,7 @@ import patchlib.api.patch.RedirectMethodCall;
 
 import java.awt.Color;
 
-// 0.98a-RC8: com.fs.starfarer.campaign.ui.ooOO, the submarket button render panel; the only class in its package with this constructor
+// 0.98.5a-RC6: com.fs.starfarer.campaign.ui.C, the submarket button render panel; the only class in its package with this constructor
 @Patch(target = @ClassMatch(subtype = UIPanelAPI.class, packageName = "com.fs.starfarer.campaign.ui",
         methodMatches = @MethodMatch(methodType = MethodType.CONSTRUCTOR,
                 parameterTypes = {String.class, String.class, Color.class, Color.class, Color.class})))

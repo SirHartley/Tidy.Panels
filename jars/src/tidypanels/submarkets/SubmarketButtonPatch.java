@@ -21,7 +21,7 @@ import patchlib.api.spec.MethodQuerySpec;
 import java.util.ArrayList;
 import java.util.List;
 
-// 0.98a-RC8: com.fs.starfarer.campaign.ui.Z, the class name will change, its package and showSubmarketTextDialog should not
+// 0.98.5a-RC6: com.fs.starfarer.campaign.ui.ifsuper, the class name will change, its package and showSubmarketTextDialog should not
 @Patch(target = @ClassMatch(subtype = UIPanelAPI.class, packageName = "com.fs.starfarer.campaign.ui",
         methodMatches = @MethodMatch(methodName = "showSubmarketTextDialog")))
 public class SubmarketButtonPatch {

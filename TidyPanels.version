@@ -4,9 +4,9 @@
     "modVersion":
     {
         "major":1,
-        "minor":0,
+        "minor":1,
         "patch":"a"
     },
-    "directDownloadURL":"https://github.com/SirHartley/Tidy.Panels/releases/download/1.0.a/Tidy.Panels-1.0.a.zip",
+    "directDownloadURL":"https://github.com/SirHartley/Tidy.Panels/releases/download/1.1.a/Tidy.Panels-1.1.a.zip",
     "changelogURL":"https://raw.githubusercontent.com/SirHartley/Tidy.Panels/refs/heads/master/Changelog",
 }

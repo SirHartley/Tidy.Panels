@@ -6,7 +6,7 @@ Choose between full labels or compact icons that expand on hover. The selected m
 
 ## Requirements
 
-- Starsector 0.98a
+- Starsector 0.98.5a
 - [PatchLib](https://github.com/Lukas22041/PatchLib)
 - LunaLib and its dependency, LazyLib
 

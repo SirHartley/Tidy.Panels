@@ -11,7 +11,7 @@ How Tidy.Panels is built, packaged and published. Nothing here runs unless a rel
 | Version file | `TidyPanels.version` | Online Version Checker file on `master`, registered in `data/config/version/version_files.csv`; stamped at packaging, committed back after a release |
 | Release builder | `jars/src/tidypanels/tools/ReleaseBuild.java` | `build` and `package`, run with `java <file>` |
 | Builder checks | `jars/src/tidypanels/tools/ReleaseBuildChecks.java` | Headless checks of changelog parsing, stamping and file filtering |
-| Build libraries | `lib/` | Game API and library jars from `0.98a-RC8`, `PatchLibAPI.jar` from PatchLib `1.0.3`, and `LunaLib.jar`, `LazyLib.jar` and `Kotlin-Runtime.jar` copied from Illustrated.Entities' `lib/` |
+| Build libraries | `lib/` | `starfarer.api.jar` from `0.98.5a-RC6`, the game's `lwjgl`, `json` and `log4j` jars from `0.98a-RC8`, `PatchLibAPI.jar` from PatchLib `1.1.1`, and `LunaLib.jar`, `LazyLib.jar` and `Kotlin-Runtime.jar` copied from Illustrated.Entities' `lib/` |
 | Release jar | `jars/release/TidyPanels.jar` | Built by `build`, gitignored, runtime classes only; shipped as `jars/TidyPanels.jar` |
 | Release workflow | `.github/workflows/release.yml` | Manual only: preview without a version, publish with one |
 

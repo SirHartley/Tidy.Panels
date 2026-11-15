@@ -18,7 +18,7 @@ import java.util.function.ToDoubleFunction;
 
 public final class LayoutChecks {
 
-    // 0.98a-RC8: buttons are 48 px high and (int)(48 * 640 / 400) - 2 + 120 = 194 px wide
+    // 0.98.5a-RC6: buttons are 48 px high and (int)(48 * 640 / 400) - 2 + 120 = 194 px wide
     private static final float HEIGHT = 48f;
     private static final float VANILLA_WIDTH = 194f;
     private static final float[] WIDTHS = {450f, 700f, 903f, 1000f, 1260f, 1900f};

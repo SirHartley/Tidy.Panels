@@ -1,6 +1,6 @@
 # Tidy.Panels
 
-Starsector mod (game `0.98a`) of small UI panel fixes built on PatchLib. Each panel it changes has its own package; the first, `submarkets`, lines the submarket buttons on the cargo and fleet screens up into rows that fill the panel, with the storage button at the right end of the last row.
+Starsector mod (game `0.98.5a`) of small UI panel fixes built on PatchLib. Each panel it changes has its own package; the first, `submarkets`, lines the submarket buttons on the cargo and fleet screens up into rows that fill the panel, with the storage button at the right end of the last row.
 
 ## Required workflow
 

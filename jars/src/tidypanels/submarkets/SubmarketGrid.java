@@ -4,10 +4,10 @@ import java.util.function.ToDoubleFunction;
 
 public final class SubmarketGrid {
 
-    // 0.98a-RC8 vanilla strip spacing: 5 px between buttons, 2 px between rows
+    // 0.98.5a-RC6 vanilla strip spacing: 5 px between buttons, 2 px between rows
     public static final float GAP = 5f;
     public static final float ROW_GAP = 2f;
-    // 0.98a-RC8 button art: icon inset 4 px at 640:400, name 10 px right of the icon
+    // 0.98.5a-RC6 button art: icon inset 4 px at 640:400, name 10 px right of the icon
     public static final float BORDER = 4f;
     public static final float LABEL_PAD = 10f;
     public static final int FIVE = 5;

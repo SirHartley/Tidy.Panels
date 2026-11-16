@@ -5,8 +5,8 @@
     {
         "major":1,
         "minor":1,
-        "patch":"a"
+        "patch":"b"
     },
-    "directDownloadURL":"https://github.com/SirHartley/Tidy.Panels/releases/download/1.1.a/Tidy.Panels-1.1.a.zip",
+    "directDownloadURL":"https://github.com/SirHartley/Tidy.Panels/releases/download/1.1.b/Tidy.Panels-1.1.b.zip",
     "changelogURL":"https://raw.githubusercontent.com/SirHartley/Tidy.Panels/refs/heads/master/Changelog",
 }

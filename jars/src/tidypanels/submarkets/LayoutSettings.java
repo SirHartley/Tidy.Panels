@@ -6,6 +6,8 @@ public final class LayoutSettings {
 
     public static final String MOD_ID = "tidypanels";
     public static final String LAYOUT = "tidypanels_layout";
+    public static final String VANILLA_ONE_ROW = "tidypanels_vanilla_one_row";
+    public static final boolean VANILLA_ONE_ROW_DEFAULT = false;
     public static final String TILE_UNFOLD = "tidypanels_tile_unfold";
     public static final String UNFOLD_TIME = "tidypanels_unfold_time";
     // seconds; defaultValue, minValue and maxValue in data/config/LunaSettings.csv
@@ -25,6 +27,14 @@ public final class LayoutSettings {
     // read once per strip build, which only happens when a screen opens
     public static ButtonLayout layout() {
         return ButtonLayout.byLabel(LunaSettings.getString(MOD_ID, LAYOUT));
+    }
+
+    public static boolean vanillaOneRow() {
+        return vanillaOneRow(LunaSettings.getBoolean(MOD_ID, VANILLA_ONE_ROW));
+    }
+
+    public static boolean vanillaOneRow(Boolean value) {
+        return value != null ? value : VANILLA_ONE_ROW_DEFAULT;
     }
 
     public static TileUnfold tileUnfold() {

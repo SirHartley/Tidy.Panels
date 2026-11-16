@@ -48,6 +48,10 @@ public final class SubmarketGrid {
         return Math.max(1, (int) (width / (buttonWidth + GAP)));
     }
 
+    public static boolean fitsOneVanillaRow(float width, float buttonWidth, int count) {
+        return count <= vanillaColumns(width, buttonWidth);
+    }
+
     public static int unfoldColumns(float width, float buttonHeight, float openWidth) {
         float folded = iconOnlyWidth(buttonHeight);
         return Math.max(1, (int) ((width + GAP - (openWidth - folded)) / (folded + GAP)));

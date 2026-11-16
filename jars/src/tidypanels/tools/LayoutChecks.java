@@ -113,6 +113,8 @@ public final class LayoutChecks {
         }
         SubmarketGrid grid = SubmarketGrid.of(ButtonLayout.STRETCHED, width, HEIGHT, VANILLA_WIDTH, count, count - 1);
         require(grid.rows() == rows + 1, "vanilla row count: " + width + " px, " + count + " buttons");
+        require(SubmarketGrid.fitsOneVanillaRow(width, VANILLA_WIDTH, count) == (rows == 0),
+                "one vanilla row: " + width + " px, " + count + " buttons");
     }
 
     // never unfold: open width equals folded width, so every tile stays folded and more fit per row
@@ -294,6 +296,7 @@ public final class LayoutChecks {
         List<String> tileUnfold = null;
         List<String> highlight = null;
         List<String> corners = null;
+        List<String> oneRow = null;
         List<String> order = new ArrayList<>();
         for (String line : lines.subList(1, lines.size())) {
             List<String> cells = cells(line);
@@ -303,6 +306,7 @@ public final class LayoutChecks {
             if (cells.get(0).equals(LayoutSettings.TILE_UNFOLD)) tileUnfold = cells;
             if (cells.get(0).equals(LayoutSettings.SELECTED_HIGHLIGHT)) highlight = cells;
             if (cells.get(0).equals(LayoutSettings.FIX_CORNERS)) corners = cells;
+            if (cells.get(0).equals(LayoutSettings.VANILLA_ONE_ROW)) oneRow = cells;
             if (!cells.get(2).equals("Header")) order.add(cells.get(0));
         }
         require(time != null, "unfold time setting registered");
@@ -317,7 +321,7 @@ public final class LayoutChecks {
         require(LayoutSettings.unfoldTime(-1.0) == LayoutSettings.UNFOLD_TIME_MIN, "time clamped at the minimum");
         require(LayoutSettings.unfoldTime(5.0) == LayoutSettings.UNFOLD_TIME_MAX, "time clamped at the maximum");
         require(LayoutSettings.unfoldTime(0.3) == 0.3f, "time kept");
-        require(order.equals(List.of(LayoutSettings.LAYOUT, LayoutSettings.TILE_UNFOLD, LayoutSettings.UNFOLD_TIME,
+        require(order.equals(List.of(LayoutSettings.LAYOUT, LayoutSettings.VANILLA_ONE_ROW, LayoutSettings.TILE_UNFOLD, LayoutSettings.UNFOLD_TIME,
                 LayoutSettings.SELECTED_HIGHLIGHT, LayoutSettings.FIX_CORNERS)), "settings in the agreed order: " + order);
         require(tileUnfold != null, "tile unfold setting registered");
         require(tileUnfold.get(2).equals("Radio"), "tile unfold is a radio");
@@ -355,6 +359,15 @@ public final class LayoutChecks {
         require(!corners.get(5).isBlank(), "fix corners help text");
         require(LayoutSettings.fixCorners((Boolean) null) == LayoutSettings.FIX_CORNERS_DEFAULT, "missing fix corners falls back");
         require(!LayoutSettings.fixCorners(Boolean.FALSE), "fix corners off kept");
+        require(oneRow != null, "vanilla one row setting registered");
+        require(oneRow.get(2).equals("Boolean"), "vanilla one row is a boolean");
+        require(Boolean.parseBoolean(oneRow.get(3).toLowerCase()) == LayoutSettings.VANILLA_ONE_ROW_DEFAULT,
+                "vanilla one row default");
+        require(!LayoutSettings.VANILLA_ONE_ROW_DEFAULT, "vanilla one row is off by default");
+        require(!oneRow.get(5).isBlank(), "vanilla one row help text");
+        require(LayoutSettings.vanillaOneRow((Boolean) null) == LayoutSettings.VANILLA_ONE_ROW_DEFAULT,
+                "missing vanilla one row falls back");
+        require(LayoutSettings.vanillaOneRow(Boolean.TRUE), "vanilla one row on kept");
         require(row != null, "layout setting registered");
         require(row.get(2).equals("Radio"), "layout is a radio");
         require(ButtonLayout.DEFAULT == ButtonLayout.TILES, "tiles is the default layout");

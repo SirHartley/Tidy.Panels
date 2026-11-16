@@ -8,6 +8,9 @@ None
 
 --------------------------- Changelog -----------------------------
 
+1.1.b
+Added - Vanilla look on one row setting: keeps vanilla buttons when they all fit in one row, off by default
+
 1.1.a
 Added - Tile unfold setting for Tiles: On hover (default), On click or Never
 Adjusted - Renamed the Unfold on hover layout to Tiles, saved settings carry over

@@ -43,9 +43,11 @@ public class SubmarketButtonPatch {
             if (item instanceof ButtonAPI button) buttons.add(button);
         }
         if (buttons.isEmpty()) return;
-        ButtonLayout layout = LayoutSettings.layout();
         LayoutSettings.readRenderSettings();
         PositionAPI first = buttons.get(0).getPosition();
+        if (LayoutSettings.vanillaOneRow()
+                && SubmarketGrid.fitsOneVanillaRow(strip.getPosition().getWidth(), first.getWidth(), buttons.size())) return;
+        ButtonLayout layout = LayoutSettings.layout();
         TileUnfold unfold = LayoutSettings.tileUnfold();
         // never unfold: the open width is the folded width, so no tile ever widens
         float openWidth = unfold == TileUnfold.NEVER ? SubmarketGrid.iconOnlyWidth(first.getHeight()) : first.getWidth();

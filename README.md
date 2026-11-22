@@ -31,7 +31,7 @@ Open LunaLib's settings to change these. Changes apply when you reopen the cargo
 | Selected button highlight | **Animated** (default): moving lights in the faction's color. **Bright band**: a fixed outline. **Off**: vanilla appearance. |
 | Fix button corners | Fits button backgrounds to their frames. On by default. |
 
-With **On hover**, the last hovered tile stays expanded. Each row keeps its width as tiles expand and collapse. Long names are shortened to fit.
+With **On hover**, the last hovered tile stays expanded. Each row keeps its width as tiles expand and collapse. Long names are shortened to fit. With **Five per row**, a long one line name goes on two lines instead.
 
 ## Compatibility
 

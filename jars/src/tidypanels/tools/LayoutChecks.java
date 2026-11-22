@@ -56,6 +56,7 @@ public final class LayoutChecks {
             for (int count = 1; count <= 12; count++) checkNever(width, count, folded);
         }
         require(grid(ButtonLayout.FIVE_PER_ROW, 903f).labelWidth(0) == 95f, "95 px for names at 903 px");
+        require(grid(ButtonLayout.FIVE_PER_ROW, 903f).wrapWidth(0) == 89f, "names wrap past 89 px at 903 px");
         require(SubmarketGrid.iconOnlyWidth(HEIGHT) == 72f, "72 px folded tiles");
         // vanilla draws the icon at x = BORDER, so the folded tile's right inset must match it exactly
         require(SubmarketGrid.iconOnlyWidth(HEIGHT) - SubmarketGrid.BORDER - SubmarketGrid.iconWidth(HEIGHT)
@@ -222,6 +223,41 @@ public final class LayoutChecks {
                 "long line cut to fit: " + lines[0]);
         require(!lines[0].contains(" " + SubmarketGrid.ELLIPSIS), "no space before the dots: " + lines[0]);
         require(SubmarketGrid.fit("Market", 10f, measure).isEmpty(), "nothing fits");
+        checkWrap(measure);
+    }
+
+    private static void checkWrap(ToDoubleFunction<String> measure) {
+        float room = 89f;
+        require(SubmarketGrid.wrap("Market", room, measure).equals("Market"), "short name kept on one line");
+        require(SubmarketGrid.wrap("Open\nMarket", room, measure).equals("Open\nMarket"), "two line name kept");
+        require(SubmarketGrid.wrap("Animal Market", room, measure).equals("Animal\nMarket"), "two words wrap at the space");
+        require(SubmarketGrid.wrap("Requisitions Centre Annex", room, measure).equals("Requisitions\nCentre Annex"),
+                "three words wrap at the space that fits");
+        require(SubmarketGrid.wrap("Blackmarketeers", room, measure).equals("Blackmarket-\neers"),
+                "one word is hyphenated");
+        require(SubmarketGrid.wrap("Blackmarketeers Den", room, measure).equals("Blackmarket-\neers Den"),
+                "too long first word is hyphenated");
+        String cut = SubmarketGrid.wrap("Big Requisitions Centre Annex Depot", room, measure);
+        String[] lines = cut.split("\n", -1);
+        require(lines.length == 2 && lines[0].equals("Big") && lines[1].endsWith(SubmarketGrid.ELLIPSIS),
+                "second line cut when it does not fit: " + cut);
+        require(SubmarketGrid.wrap("Mark", 10f, measure).isEmpty(), "nothing fits when wrapped");
+        String[] names = {"Animal Market", "Blackmarketeers", "Requisitions Centre Annex Depot", "A B C D E F G H I J K L",
+                "Independent Military Requisitions", "Open\nMarket", "Abcdefghijklmnopqrstuvwxyz"};
+        for (String name : names) {
+            for (float width = 20f; width <= 120f; width += 7f) {
+                String wrapped = SubmarketGrid.wrap(name, width, measure);
+                String[] parts = wrapped.split("\n", -1);
+                require(parts.length <= 2, "at most two lines: " + wrapped);
+                for (String part : parts) {
+                    require(measure.applyAsDouble(part) <= width, "each line fits " + width + ": " + wrapped);
+                }
+            }
+        }
+        String hyphenated = SubmarketGrid.wrap("Abcdefghijklmnopqrstuvwxyz", 60f, measure);
+        String[] halves = hyphenated.split("\n", -1);
+        require(halves[0].endsWith(SubmarketGrid.HYPHEN) && halves[0].length() - 1 >= SubmarketGrid.HYPHEN_MIN_CHARS,
+                "hyphen keeps letters before it: " + hyphenated);
     }
 
     private static void checkOutlineColor() {

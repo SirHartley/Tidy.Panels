@@ -70,7 +70,7 @@ public class SubmarketButtonPatch {
             if (layout != ButtonLayout.FIVE_PER_ROW) continue;
             LabelAPI label = label(context, button, grid.buttonWidth(slot), grid.buttonHeight);
             if (label == null) continue;
-            label.setText(SubmarketGrid.fit(label.getText(), grid.labelWidth(slot), label::computeTextWidth));
+            label.setText(SubmarketGrid.wrap(label.getText(), grid.wrapWidth(slot), label::computeTextWidth));
         }
     }
 

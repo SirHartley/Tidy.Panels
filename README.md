@@ -24,14 +24,14 @@ Open LunaLib's settings to change these. Changes apply when you reopen the cargo
 
 | Setting | Options |
 |---|---|
-| Submarket button layout | **Tiles** (default): icon tiles; Tile unfold sets how they show names. **Stretched**: keeps the vanilla button count per row. **Five per row**: fits five named buttons per row. |
+| Submarket button layout | **Tiles**: icon tiles; Tile unfold sets how they show names. **Stretched**: keeps the vanilla button count per row. **Five per row** (default): fits five named buttons per row. |
 | Vanilla look on one row | Keeps the vanilla buttons when they all fit in one row. Off by default. |
 | Tile unfold | Tiles only. **On hover** (default): the tile under the cursor expands to show its name. **On click**: only the selected market's tile expands, when clicked. **Never**: icons only, names show in the tooltip. |
 | Unfold time | Time to expand a tile with On hover or On click, from 0 to 1 second. Default: 0.1. Set to 0 for instant expansion. |
 | Selected button highlight | **Animated** (default): moving lights in the faction's color. **Bright band**: a fixed outline. **Off**: vanilla appearance. |
 | Fix button corners | Fits button backgrounds to their frames. On by default. |
 
-With **On hover**, the last hovered tile stays expanded. Each row keeps its width as tiles expand and collapse. Long names are shortened to fit.
+With **On hover**, the last hovered tile stays expanded. Each row keeps its width as tiles expand and collapse. Long names are shortened to fit. With **Five per row**, a long one line name goes on two lines instead.
 
 ## Compatibility
 

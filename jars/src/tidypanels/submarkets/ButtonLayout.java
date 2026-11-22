@@ -6,8 +6,10 @@ public enum ButtonLayout {
     STRETCHED("Stretched"),
     FIVE_PER_ROW("Five per row");
 
-    // defaultValue in data/config/LunaSettings.csv; a saved 1.0.a "Unfold on hover" falls back to it
-    public static final ButtonLayout DEFAULT = TILES;
+    // defaultValue in data/config/LunaSettings.csv
+    public static final ButtonLayout DEFAULT = FIVE_PER_ROW;
+    // 1.0.a name of TILES, still in old LunaLib saves
+    public static final String OLD_TILES_LABEL = "Unfold on hover";
 
     // radio option text in data/config/LunaSettings.csv, also what LunaLib saves
     public final String label;
@@ -17,6 +19,7 @@ public enum ButtonLayout {
     }
 
     public static ButtonLayout byLabel(String label) {
+        if (OLD_TILES_LABEL.equals(label)) return TILES;
         for (ButtonLayout layout : values()) {
             if (layout.label.equals(label)) return layout;
         }

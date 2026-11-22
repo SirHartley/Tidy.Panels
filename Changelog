@@ -8,6 +8,11 @@ None
 
 --------------------------- Changelog -----------------------------
 
+1.1.c - UNRELEASED
+Adjusted - Five per row is now the default layout (was Tiles)
+Note - Existing installs keep their saved layout
+Adjusted - Five per row: long market names go on two lines instead of touching the button edge
+
 1.1.b
 Added - Vanilla look on one row setting: keeps vanilla buttons when they all fit in one row, off by default
 

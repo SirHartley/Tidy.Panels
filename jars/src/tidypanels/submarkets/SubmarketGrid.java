@@ -12,6 +12,8 @@ public final class SubmarketGrid {
     public static final float LABEL_PAD = 10f;
     public static final int FIVE = 5;
     public static final String ELLIPSIS = "...";
+    public static final String HYPHEN = "-";
+    public static final int HYPHEN_MIN_CHARS = 2;
 
     public final float width;
     public final float buttonHeight;
@@ -96,11 +98,15 @@ public final class SubmarketGrid {
         return buttonWidth(slot) - labelInset(buttonHeight);
     }
 
+    // a wrapped name keeps the icon gap from the button's right edge too
+    public float wrapWidth(int slot) {
+        return labelWidth(slot) - (LABEL_PAD - BORDER);
+    }
+
     // button width taken by everything but the name: both borders, the icon and the gap after it
     public static float labelInset(float buttonHeight) {
         return 2 * BORDER + iconWidth(buttonHeight) + LABEL_PAD;
     }
-
 
     // cuts each line on its own, vanilla names carry a line break
     public static String fit(String text, float maxWidth, ToDoubleFunction<String> measure) {
@@ -109,6 +115,42 @@ public final class SubmarketGrid {
             lines[i] = fitLine(lines[i], maxWidth, measure);
         }
         return String.join("\n", lines);
+    }
+
+    // a one line name that runs too long goes on two lines, at a space or hyphenated; 3 lines do not fit the button
+    public static String wrap(String text, float maxWidth, ToDoubleFunction<String> measure) {
+        if (text.contains("\n") || measure.applyAsDouble(text) <= maxWidth) return fit(text, maxWidth, measure);
+        String[] lines = splitAtSpace(text, maxWidth, measure);
+        if (lines == null) lines = hyphenate(text, maxWidth, measure);
+        if (lines == null) return fit(text, maxWidth, measure);
+        return lines[0] + "\n" + fitLine(lines[1], maxWidth, measure);
+    }
+
+    // the space that keeps the longer line shortest wins
+    private static String[] splitAtSpace(String text, float maxWidth, ToDoubleFunction<String> measure) {
+        String[] best = null;
+        double bestWidth = Double.MAX_VALUE;
+        for (int space = text.indexOf(' '); space >= 0; space = text.indexOf(' ', space + 1)) {
+            String first = text.substring(0, space).strip();
+            String second = text.substring(space + 1).strip();
+            if (first.isEmpty() || second.isEmpty()) continue;
+            double firstWidth = measure.applyAsDouble(first);
+            if (firstWidth > maxWidth) break;
+            double width = Math.max(firstWidth, measure.applyAsDouble(second));
+            if (width < bestWidth) {
+                best = new String[]{first, second};
+                bestWidth = width;
+            }
+        }
+        return best;
+    }
+
+    private static String[] hyphenate(String text, float maxWidth, ToDoubleFunction<String> measure) {
+        for (int end = text.length() - HYPHEN_MIN_CHARS; end >= HYPHEN_MIN_CHARS; end--) {
+            String first = text.substring(0, end);
+            if (measure.applyAsDouble(first + HYPHEN) <= maxWidth) return new String[]{first + HYPHEN, text.substring(end)};
+        }
+        return null;
     }
 
     private static String fitLine(String line, float maxWidth, ToDoubleFunction<String> measure) {

@@ -406,8 +406,8 @@ public final class LayoutChecks {
         require(LayoutSettings.vanillaOneRow(Boolean.TRUE), "vanilla one row on kept");
         require(row != null, "layout setting registered");
         require(row.get(2).equals("Radio"), "layout is a radio");
-        require(ButtonLayout.DEFAULT == ButtonLayout.TILES, "tiles is the default layout");
-        require(ButtonLayout.byLabel("Unfold on hover") == ButtonLayout.TILES, "a saved 1.0.a unfold on hover becomes tiles");
+        require(ButtonLayout.DEFAULT == ButtonLayout.FIVE_PER_ROW, "five per row is the default layout");
+        require(ButtonLayout.byLabel(ButtonLayout.OLD_TILES_LABEL) == ButtonLayout.TILES, "a saved 1.0.a unfold on hover becomes tiles");
         require(row.get(3).equals(ButtonLayout.DEFAULT.label), "csv default matches ButtonLayout.DEFAULT");
         require(row.get(5).contains(ButtonLayout.DEFAULT.label + " (default)"), "help text names the default");
         List<String> options = new ArrayList<>();

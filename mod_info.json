@@ -3,7 +3,7 @@
     "name": "Tidy.Panels",
     "author": "SirHartley",
     "utility": true,
-    "version": "1.0.a",
+    "version": "1.1.b",
     "description": "Small fixes for Starsector's UI panels.",
     "gameVersion": "0.98.5a-RC6",
     "jars": ["jars/TidyPanels.jar"],
